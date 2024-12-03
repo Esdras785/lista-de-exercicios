@@ -2,19 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Definindo a estrutura do contato
 typedef struct Contato {
     char nome[100];
     char telefone[20];
     char email[100];
-    struct Contato *proximo;
+    struct Contato *proximo;  // Ponteiro para o próximo contato na lista
 } Contato;
 
+// Definindo a estrutura da lista de contatos
 typedef struct {
     Contato *inicio;
     int tamanho;
 } ListaContatos;
 
-// Função para inicializar a lista
+// Função para inicializar a lista de contatos
 void inicializarLista(ListaContatos *lista) {
     lista->inicio = NULL;
     lista->tamanho = 0;
@@ -148,13 +150,13 @@ int main() {
     do {
         menu();
         scanf("%d", &opcao);
-        getchar(); // Limpar buffer
+        getchar(); // Limpar buffer de nova linha
 
         switch (opcao) {
             case 1:
                 printf("Nome: ");
                 fgets(nome, sizeof(nome), stdin);
-                nome[strcspn(nome, "\n")] = '\0'; // Remove o '\n'
+                nome[strcspn(nome, "\n")] = '\0'; // Remove o '\n' gerado pelo fgets
                 printf("Telefone: ");
                 fgets(telefone, sizeof(telefone), stdin);
                 telefone[strcspn(telefone, "\n")] = '\0';
